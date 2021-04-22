@@ -29,7 +29,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function() {
     Route::apiResources([
         'clients' => ClientController::class,
-        'users' => UserController::class,
         'contacts' => ContactController::class,
         'roles' => UserRoleController::class,
         'activities' => ActivityController::class,
@@ -37,5 +36,13 @@ Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function() {
         'statuses' => StatusController::class,
         'userAssignments' => UserAssignmentController::class
     ]);
+
+    Route::get('users', [UserController::class, 'index']);
+    Route::get('users/{user}', [UserController::class, 'show']);
+    Route::put('users/{user}', [UserController::class, 'update']);
+    Route::delete('users/{user}', [UserController::class, 'destroy']);
 });
 
+Route::group(['prefix' => 'v1'], function() {
+    Route::post('users', [UserController::class, 'store']);
+});
