@@ -26,23 +26,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'v1', 'middleware' => ['auth:api']], function() {
-    Route::apiResources([
-        'clients' => ClientController::class,
-        'contacts' => ContactController::class,
-        'roles' => UserRoleController::class,
-        'activities' => ActivityController::class,
-        'assignments' => AssignmentController::class,
-        'statuses' => StatusController::class,
-        'userAssignments' => UserAssignmentController::class
-    ]);
-
-    Route::get('users', [UserController::class, 'index']);
-    Route::get('users/{user}', [UserController::class, 'show']);
-    Route::put('users/{user}', [UserController::class, 'update']);
-    Route::delete('users/{user}', [UserController::class, 'destroy']);
-});
-
 Route::group(['prefix' => 'v1'], function() {
+
     Route::post('users', [UserController::class, 'store']);
+
+    Route::group(['middleware' => ['auth:api']], function() {
+        Route::apiResources([
+            'clients' => ClientController::class,
+            'contacts' => ContactController::class,
+            'roles' => UserRoleController::class,
+            'activities' => ActivityController::class,
+            'assignments' => AssignmentController::class,
+            'statuses' => StatusController::class,
+            'userAssignments' => UserAssignmentController::class
+        ]);
+
+        Route::apiResource('users', UserController::class)->except('store');
+    });
+
 });
+
