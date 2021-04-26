@@ -13,7 +13,6 @@
         "laravel/passport": "^10.1",
         "laravel/tinker": "^2.5",
         "onecentlin/laravel-adminer": "^5.2"
-
     },
     "require-dev": {
         "facade/ignition": "^2.5",
