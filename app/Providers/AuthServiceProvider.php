@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
         if (! $this->app->routesAreCached()) {
             Passport::routes();
             
-            //Passport::loadKeysFrom(__DIR__.'/storage');
+            Passport::loadKeysFrom(__DIR__.'/storage');
 
             Passport::tokensExpireIn(now()->addDays(15));
             Passport::refreshTokensExpireIn(now()->addDays(30));
