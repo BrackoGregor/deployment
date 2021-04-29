@@ -10,7 +10,51 @@ use Illuminate\Http\Request;
 class ActivityController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *      path="/activities",
+     *      operationId="getActivitiesList",
+     *      tags={"Activities"},
+     *      summary="Get list of activities",
+     *      description="Returns list of activities",
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                property="data",
+     *                type="array",
+     *                example={{
+     *                  "title": "aktivnost1",
+                        "start_time": "2021-04-29T17:00:05",
+                        "end_time": "2021-04-30T18:00:00",
+                        "comment": "implementacija obrazca",
+                        "id_assignments": "1",
+                        "updated_at": "2021-04-28T15:13:29.000000Z",
+                        "created_at": "2021-04-28T15:13:29.000000Z",
+                        "id": 1
+     *                }, {
+     *                  "title": "aktivnost2",
+                        "start_time": "2021-04-30T10:00:05",
+                        "end_time": "2021-05-01T15:00:00",
+                        "comment": "implementacija API",
+                        "id_assignments": "2",
+                        "updated_at": "2021-04-28T15:13:29.000000Z",
+                        "created_at": "2021-04-28T15:13:29.000000Z",
+                        "id": 2
+     *                }},
+     *                @OA\Items(
+     *                  @OA\Property(property="title", type="string"),
+     *                  @OA\Property(property="start_time", type="date"),
+     *                  @OA\Property(property="end_time", type="date"),
+     *                  @OA\Property(property="comment", type="string"),
+     *                  @OA\Property(property="id_assignments", type="integer"),
+     *                ),
+     *             ),
+     * )
+     *
+     *       )
+     *     )
      *
      * @param Request $request
      * @return JsonResponse
@@ -21,8 +65,51 @@ class ActivityController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * @OA\Post(
+     *      path="/activities",
+     *      operationId="storeActivity",
+     *      tags={"Activities"},
+     *      summary="Store new activity",
+     *      description="Returns activity data",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="title", type="string"),
+     *                  @OA\Property(property="start_time", type="date"),
+     *                  @OA\Property(property="end_time", type="date"),
+     *                  @OA\Property(property="comment", type="string"),
+     *                  @OA\Property(property="id_assignments", type="integer")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Created",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="title", type="string"),
+     *                      @OA\Property(property="start_time", type="date"),
+     *                      @OA\Property(property="end_time", type="date"),
+     *                      @OA\Property(property="comment", type="string"),
+     *                      @OA\Property(property="id_assignments", type="integer"),
+     *                      example={
+     *                         "title": "aktivnost1",
+                                "start_time": "2021-04-29T17:00:05",
+                                "end_time": "2021-04-30T18:00:00",
+                                "comment": "implementacija obrazca",
+                                "id_assignments": "1",
+                                "updated_at": "2021-04-28T15:13:29.000000Z",
+                                "created_at": "2021-04-28T15:13:29.000000Z",
+                                "id": 1
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @return JsonResponse
      */
@@ -40,8 +127,48 @@ class ActivityController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * @OA\Get(
+     *      path="/activities/{activity}",
+     *      operationId="getActivityById",
+     *      tags={"Activities"},
+     *      summary="Get activity information",
+     *      description="Returns activity data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="title", type="string"),
+     *                      @OA\Property(property="start_time", type="date"),
+     *                      @OA\Property(property="end_time", type="date"),
+     *                      @OA\Property(property="comment", type="string"),
+     *                      @OA\Property(property="id_assignments", type="integer"),
+     *                      example={
+     *                          "title": "aktivnost1",
+                                "start_time": "2021-04-29T17:00:05",
+                                "end_time": "2021-04-30T18:00:00",
+                                "comment": "implementacija obrazca",
+                                "id_assignments": "1",
+                                "updated_at": "2021-04-28T15:13:29.000000Z",
+                                "created_at": "2021-04-28T15:13:29.000000Z",
+                                "id": 1
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Activity $activity
      * @return JsonResponse
      */
@@ -51,8 +178,51 @@ class ActivityController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * @OA\Put(
+     *      path="/activities/{activity}",
+     *      operationId="updateActivity",
+     *      tags={"Activities"},
+     *      summary="Update existing activity",
+     *      description="Returns updated activity data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="title", type="string"),
+     *                  @OA\Property(property="start_time", type="date"),
+     *                  @OA\Property(property="end_time", type="date"),
+     *                  @OA\Property(property="comment", type="string"),
+     *                  @OA\Property(property="id_assignments", type="integer")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="title", type="string"),
+     *                      @OA\Property(property="start_time", type="date"),
+     *                      @OA\Property(property="end_time", type="date"),
+     *                      @OA\Property(property="comment", type="string"),
+     *                      @OA\Property(property="id_assignments", type="integer"),
+     *                      example=true
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @param Activity $activity
      * @return JsonResponse
@@ -71,8 +241,26 @@ class ActivityController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * @OA\Delete(
+     *      path="/activities/{activity}",
+     *      operationId="deleteActivity",
+     *      tags={"Activities"},
+     *      summary="Delete existing activity",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Activity id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="No content"
+     *       )
+     * )
      * @param Activity $activity
      * @return JsonResponse
      * @throws Exception

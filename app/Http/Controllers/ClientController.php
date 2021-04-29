@@ -10,8 +10,52 @@ use Illuminate\Http\Request;
 class ClientController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * @OA\Get(
+     *      path="/clients",
+     *      operationId="getClientsList",
+     *      tags={"Clients"},
+     *      summary="Get list of clients",
+     *      description="Returns list of clients",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                property="data",
+     *                type="array",
+     *                example={{
+     *                  "id": 1,
+                        "name": "test123",
+                        "address": "12345",
+                        "postcode": "2000",
+                        "city": "Maribor",
+                        "country": "Slovenija",
+                        "created_at": "2021-04-20T10:19:05.000000Z",
+                        "updated_at": "2021-04-21T10:40:39.000000Z",
+                        "deleted_at": null
+     *                }, {
+     *                  "id": 2,
+                        "name": "firma",
+                        "address": "primer",
+                        "postcode": "2000",
+                        "city": "Maribor",
+                        "country": "Slovenija",
+                        "created_at": "2021-04-23T14:30:42.000000Z",
+                        "updated_at": "2021-04-23T14:30:42.000000Z",
+                        "deleted_at": null
+     *                }},
+     *                @OA\Items(
+     *                  @OA\Property(property="name", type="string"),
+     *                  @OA\Property(property="address", type="string"),
+     *                  @OA\Property(property="postcode", type="string"),
+     *                  @OA\Property(property="city", type="string"),
+     *                  @OA\Property(property="country", type="string")
+     *                ),
+     *             ),
+     * )
+     *       )
+     *     )
      * @param $request
      * @return JsonResponse
      */
@@ -24,8 +68,52 @@ class ClientController extends Controller
 
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * @OA\Post(
+     *      path="/clients",
+     *      operationId="storeClient",
+     *      tags={"Clients"},
+     *      summary="Store new client",
+     *      description="Returns client data",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="name", type="string"),
+     *                  @OA\Property(property="address", type="string"),
+     *                  @OA\Property(property="postcode", type="string"),
+     *                  @OA\Property(property="city", type="string"),
+     *                  @OA\Property(property="country", type="string")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Created",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="name", type="string"),
+     *                      @OA\Property(property="address", type="string"),
+     *                      @OA\Property(property="postcode", type="string"),
+     *                      @OA\Property(property="city", type="string"),
+     *                      @OA\Property(property="country", type="string"),
+     *                      example={
+     *                          "id": 2,
+                                "name": "podjetje d.o.o.",
+                                "address": "počehova",
+                                "postcode": "2000",
+                                "city": "Maribor",
+                                "country": "Slovenija",
+                                "created_at": "2021-04-23T14:30:42.000000Z",
+                                "updated_at": "2021-04-23T14:30:42.000000Z",
+                                "deleted_at": null
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @return JsonResponse
      */
@@ -46,8 +134,49 @@ class ClientController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * @OA\Get(
+     *      path="/clients/{client}",
+     *      operationId="getClientById",
+     *      tags={"Clients"},
+     *      summary="Get client information",
+     *      description="Returns client data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Client id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="name", type="string"),
+     *                      @OA\Property(property="address", type="string"),
+     *                      @OA\Property(property="postcode", type="string"),
+     *                      @OA\Property(property="city", type="string"),
+     *                      @OA\Property(property="country", type="string"),
+     *                      example={
+     *                          "id": 3,
+                                "name": "nova",
+                                "address": "primer",
+                                "postcode": "2000",
+                                "city": "Maribor",
+                                "country": "Slovenija",
+                                "created_at": "2021-04-23T14:30:45.000000Z",
+                                "updated_at": "2021-04-23T14:30:45.000000Z",
+                                "deleted_at": null
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Client $client
      * @return JsonResponse
      */
@@ -58,8 +187,61 @@ class ClientController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
-     *
+     * @OA\Put(
+     *      path="/clients/{client}",
+     *      operationId="updateClient",
+     *      tags={"Clients"},
+     *      summary="Update existing client",
+     *      description="Returns updated client data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Client id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="name", type="string"),
+     *                  @OA\Property(property="address", type="string"),
+     *                  @OA\Property(property="postcode", type="string"),
+     *                  @OA\Property(property="city", type="string"),
+     *                  @OA\Property(property="country", type="string")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="name", type="string"),
+     *                      @OA\Property(property="address", type="string"),
+     *                      @OA\Property(property="postcode", type="string"),
+     *                      @OA\Property(property="city", type="string"),
+     *                      @OA\Property(property="country", type="string"),
+     *                      example={
+                                "id": 2,
+                                "name": "solve-x",
+                                "address": "počehova",
+                                "postcode": "2000",
+                                "city": "Maribor",
+                                "country": "Slovenija",
+                                "created_at": "2021-04-23T14:30:42.000000Z",
+                                "updated_at": "2021-04-29T07:07:40.000000Z",
+                                "deleted_at": null
+     *                      }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @param Client $client
      * @return JsonResponse
@@ -81,8 +263,26 @@ class ClientController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * @OA\Delete(
+     *      path="/clients/{client}",
+     *      operationId="deleteClient",
+     *      tags={"Clients"},
+     *      summary="Delete existing client",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Client id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="No content"
+     *       )
+     * )
      * @param Client $client
      * @return JsonResponse
      * @throws Exception

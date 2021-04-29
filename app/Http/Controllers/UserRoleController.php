@@ -10,8 +10,40 @@ use Illuminate\Http\Request;
 class UserRoleController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * @OA\Get(
+     *      path="/roles",
+     *      operationId="getUserRolesList",
+     *      tags={"Users roles"},
+     *      summary="Get list of users roles",
+     *      description="Returns list of users roles",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                property="data",
+     *                type="array",
+     *                example={{
+     *                  "id": 1,
+                        "role": "user",
+                        "created_at": "2021-04-22T16:06:27.000000Z",
+                        "updated_at": "2021-04-22T16:06:27.000000Z",
+                        "deleted_at": null
+     *                }, {
+     *                  "id": 2,
+                        "role": "admin",
+                        "created_at": "2021-04-22T16:06:27.000000Z",
+                        "updated_at": "2021-04-22T16:06:27.000000Z",
+                        "deleted_at": null
+     *                }},
+     *                @OA\Items(
+     *                  @OA\Property(property="role", type="string")
+     *                ),
+     *             ),
+     * )
+     *       )
+     *     )
      * @param Request $request
      * @return JsonResponse
      */
@@ -21,8 +53,40 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * @OA\Post(
+     *      path="/roles",
+     *      operationId="storeUserRole",
+     *      tags={"Users roles"},
+     *      summary="Store new user role",
+     *      description="Returns user role data",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="role", type="string")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Created",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="role", type="string"),
+     *                      example={
+     *                          "id": 1,
+                                "role": "user",
+                                "created_at": "2021-04-22T16:06:27.000000Z",
+                                "updated_at": "2021-04-22T16:06:27.000000Z",
+                                "deleted_at": null
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @return JsonResponse
      */
@@ -39,8 +103,41 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * @OA\Get(
+     *      path="/roles/{role}",
+     *      operationId="getUserRoleById",
+     *      tags={"Users roles"},
+     *      summary="Get user role information",
+     *      description="Returns user role data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="UserRole id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="role", type="string"),
+     *                      example={
+     *                          "id": 2,
+                                "role": "admin",
+                                "created_at": "2021-04-22T16:06:27.000000Z",
+                                "updated_at": "2021-04-22T16:06:27.000000Z",
+                                "deleted_at": null
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param User_Role $role
      * @return JsonResponse
      */
@@ -50,8 +147,49 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * @OA\Put(
+     *      path="/roles/{role}",
+     *      operationId="updateUserRole",
+     *      tags={"Users roles"},
+     *      summary="Update existing user role",
+     *      description="Returns updated user role data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="UserRole id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="role", type="string")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="role", type="string"),
+     *                      example= {
+                            "id": 2,
+                            "role": "admin",
+                            "created_at": "2021-04-22T16:06:27.000000Z",
+                            "updated_at": "2021-04-22T16:06:27.000000Z",
+                            "deleted_at": null
+     *                      }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @param User_Role $role
      * @return JsonResponse
@@ -69,8 +207,26 @@ class UserRoleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * @OA\Delete(
+     *      path="/roles/{role}",
+     *      operationId="deleteUserRole",
+     *      tags={"Users roles"},
+     *      summary="Delete existing user role",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="UserRole id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="No content"
+     *       )
+     * )
      * @param User_Role $role
      * @return JsonResponse
      * @throws Exception

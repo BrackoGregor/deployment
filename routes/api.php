@@ -42,6 +42,7 @@ Route::group(['prefix' => 'v1'], function() {
         ]);
 
         Route::apiResource('users', UserController::class)->except('store');
+        Route::get('assignmentsClient/{id}', [AssignmentController::class, 'get_assignments']);
     });
 
 });

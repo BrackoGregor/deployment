@@ -10,8 +10,43 @@ use Illuminate\Http\Request;
 class UserAssignmentController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * @OA\Get(
+     *      path="/userAssignments",
+     *      operationId="getuserAssignmentsList",
+     *      tags={"User Assignments"},
+     *      summary="Get list of userAssignments",
+     *      description="Returns list of userAssignments",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                property="data",
+     *                type="array",
+     *                example={{
+     *                  "id": 1,
+                        "id_users": 1,
+                        "id_assignments": 1,
+                        "created_at": "2021-04-29T07:30:27.000000Z",
+                        "updated_at": "2021-04-29T07:30:27.000000Z",
+                        "deleted_at": null
+     *                }, {
+     *                  "id": 2,
+                        "id_users": 1,
+                        "id_assignments": 2,
+                        "created_at": "2021-04-29T07:30:38.000000Z",
+                        "updated_at": "2021-04-29T07:30:38.000000Z",
+                        "deleted_at": null
+     *                }},
+     *                @OA\Items(
+     *                  @OA\Property(property="id_users", type="integer"),
+     *                  @OA\Property(property="id_assignments", type="integer")
+     *                ),
+     *             ),
+     * )
+     *       )
+     *     )
      * @param Request $request
      * @return JsonResponse
      */
@@ -21,8 +56,43 @@ class UserAssignmentController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * @OA\Post(
+     *      path="/userAssignments",
+     *      operationId="storeuserAssignment",
+     *      tags={"User Assignments"},
+     *      summary="Store new userAssignment",
+     *      description="Returns userAssignment data",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="id_users", type="integer"),
+     *                  @OA\Property(property="id_assignments", type="integer")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Created",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="id_users", type="integer"),
+     *                      @OA\Property(property="id_assignments", type="integer"),
+     *                      example={
+     *                          "id": 2,
+                                "id_users": 1,
+                                "id_assignments": 2,
+                                "created_at": "2021-04-29T07:30:38.000000Z",
+                                "updated_at": "2021-04-29T07:30:38.000000Z",
+                                "deleted_at": null
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @return JsonResponse
      */
@@ -37,8 +107,43 @@ class UserAssignmentController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * @OA\Get(
+     *      path="/userAssignments/{userAssignment}",
+     *      operationId="getuserAssignmentById",
+     *      tags={"User Assignments"},
+     *      summary="Get userAssignment information",
+     *      description="Returns userAssignments data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="userAssignment id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="id_users", type="integer"),
+     *                      @OA\Property(property="id_assignments", type="integer"),
+     *                      example={
+     *                          "id": 1,
+                                "id_users": 1,
+                                "id_assignments": 1,
+                                "created_at": "2021-04-29T07:30:27.000000Z",
+                                "updated_at": "2021-04-29T07:30:27.000000Z",
+                                "deleted_at": null
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param User_Assignment $userAssignment
      * @return JsonResponse
      */
@@ -48,8 +153,45 @@ class UserAssignmentController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * @OA\Put(
+     *      path="/userAssignments/{userAssignment}",
+     *      operationId="updateuserAssignment",
+     *      tags={"User Assignments"},
+     *      summary="Update existing userAssignment",
+     *      description="Returns updated userAssignment data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="userAssignment id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="id_users", type="integer"),
+ *                      @OA\Property(property="id_assignments", type="integer")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="id_users", type="integer"),
+     *                      @OA\Property(property="id_assignments", type="integer"),
+     *                      example=true
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @param User_Assignment $userAssignment
      * @return JsonResponse
@@ -65,8 +207,26 @@ class UserAssignmentController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * @OA\Delete(
+     *      path="/userAssignments/{userAssignment}",
+     *      operationId="deleteuserAssignment",
+     *      tags={"User Assignments"},
+     *      summary="Delete existing userAssignment",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="userAssignment id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="No content"
+     *       )
+     * )
      * @param User_Assignment $userAssignment
      * @return JsonResponse
      * @throws Exception

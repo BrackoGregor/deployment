@@ -4,18 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
-    use SoftDeletes;
-
-    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -31,17 +27,13 @@ class User extends Authenticatable
         'id_users_roles'
     ];
 
-    public function roles(): HasOne
-    {
-        return $this->hasOne(User_Role::class, 'id_users_roles', 'id');
-    }
-
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
+        'password',
         'remember_token',
     ];
 
@@ -54,4 +46,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function setPasswordAttribute($password)
+    {
+        if (trim($password) === '') {
+            return;
+        }
+        $this->attributes['password'] = Hash::make($password);
+    }
+
+
+    public function user_role(): HasOne
+    {
+        return $this->hasOne(User_Role::class,'id_users_roles', 'id');
+    }
 }

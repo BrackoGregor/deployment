@@ -10,8 +10,52 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * @OA\Get(
+     *      path="/contacts",
+     *      operationId="getContactsList",
+     *      tags={"Contacts"},
+     *      summary="Get list of contacts",
+     *      description="Returns list of contacts",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(
+     *                property="data",
+     *                type="array",
+     *                example={{
+     *                  "id": 1,
+                        "firstname": "janez",
+                        "lastname": "novak",
+                        "email": "jnovak@gmail.com",
+                        "phone": "041123321",
+                        "id_client": 1,
+                        "created_at": "2021-04-29T07:13:09.000000Z",
+                        "updated_at": "2021-04-29T07:13:09.000000Z",
+                        "deleted_at": null
+     *                }, {
+     *                  "id": 2,
+                        "firstname": "zoran",
+                        "lastname": "tezin",
+                        "email": "zorantezin@gmail.com",
+                        "phone": "070323567",
+                        "id_client": 1,
+                        "created_at": "2021-04-29T07:13:52.000000Z",
+                        "updated_at": "2021-04-29T07:13:52.000000Z",
+                        "deleted_at": null
+     *                }},
+     *                @OA\Items(
+     *                  @OA\Property(property="firstname", type="string"),
+     *                  @OA\Property(property="lastname", type="string"),
+     *                  @OA\Property(property="email", type="string"),
+     *                  @OA\Property(property="phone", type="string"),
+     *                  @OA\Property(property="id_client", type="integer")
+     *                ),
+     *             ),
+     * )
+     *       )
+     *     )
      * @param Request $request
      * @return JsonResponse
      */
@@ -21,8 +65,52 @@ class ContactController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
+     * @OA\Post(
+     *      path="/contacts",
+     *      operationId="storeContact",
+     *      tags={"Contacts"},
+     *      summary="Store new contact",
+     *      description="Returns contact data",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="firstname", type="string"),
+     *                  @OA\Property(property="lastname", type="string"),
+     *                  @OA\Property(property="email", type="string"),
+     *                  @OA\Property(property="phone", type="string"),
+     *                  @OA\Property(property="id_client", type="integer")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="Created",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="firstname", type="string"),
+     *                      @OA\Property(property="lastname", type="string"),
+     *                      @OA\Property(property="email", type="string"),
+     *                      @OA\Property(property="phone", type="string"),
+     *                      @OA\Property(property="id_client", type="integer"),
+     *                      example={
+     *                          "id": 2,
+                                "firstname": "zoran",
+                                "lastname": "tezin",
+                                "email": "zorantezin@gmail.com",
+                                "phone": "070323567",
+                                "id_client": 1,
+                                "created_at": "2021-04-29T07:13:52.000000Z",
+                                "updated_at": "2021-04-29T07:13:52.000000Z",
+                                "deleted_at": null
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @return JsonResponse
      */
@@ -43,8 +131,49 @@ class ContactController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
+     * @OA\Get(
+     *      path="/contacts/{contact}",
+     *      operationId="getContactById",
+     *      tags={"Contacts"},
+     *      summary="Get contact information",
+     *      description="Returns contact data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Contact id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="firstname", type="string"),
+     *                      @OA\Property(property="lastname", type="string"),
+     *                      @OA\Property(property="email", type="string"),
+     *                      @OA\Property(property="phone", type="string"),
+     *                      @OA\Property(property="id_client", type="integer"),
+     *                      example={
+     *                          "id": 1,
+                                "firstname": "janez",
+                                "lastname": "novak",
+                                "email": "jnovak@gmail.com",
+                                "phone": "041123321",
+                                "id_client": 1,
+                                "created_at": "2021-04-29T07:13:09.000000Z",
+                                "updated_at": "2021-04-29T07:13:09.000000Z",
+                                "deleted_at": null
+     *                     }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Contact $contact
      * @return JsonResponse
      */
@@ -54,8 +183,61 @@ class ContactController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
+     * @OA\Put(
+     *      path="/contacts/{contact}",
+     *      operationId="updateContact",
+     *      tags={"Contacts"},
+     *      summary="Update existing contact",
+     *      description="Returns updated contact data",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Contact id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\MediaType(mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                  @OA\Property(property="firstname", type="string"),
+     *                  @OA\Property(property="lastname", type="string"),
+     *                  @OA\Property(property="email", type="string"),
+     *                  @OA\Property(property="phone", type="string"),
+     *                  @OA\Property(property="id_client", type="integer")
+     *             )
+     *         )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *          content={
+     *             @OA\MediaType(
+     *                 mediaType="application/json",
+     *                 @OA\Schema(
+     *                      @OA\Property(property="firstname", type="string"),
+     *                      @OA\Property(property="lastname", type="string"),
+     *                      @OA\Property(property="email", type="string"),
+     *                      @OA\Property(property="phone", type="string"),
+     *                      @OA\Property(property="id_client", type="integer"),
+     *                      example={
+                                "id": 2,
+                                "firstname": "franc",
+                                "lastname": "soucek",
+                                "email": "francsoucek@gmail.com",
+                                "phone": "070323567",
+                                "id_client": "1",
+                                "created_at": "2021-04-29T07:13:52.000000Z",
+                                "updated_at": "2021-04-29T07:20:02.000000Z",
+                                "deleted_at": null
+     *                      }
+     *                 )
+     *             )
+     *         }
+     *       )
+     * )
      * @param Request $request
      * @param Contact $contact
      * @return JsonResponse
@@ -77,8 +259,26 @@ class ContactController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
+     * @OA\Delete(
+     *      path="/contacts/{contact}",
+     *      operationId="deleteContact",
+     *      tags={"Contacts"},
+     *      summary="Delete existing contact",
+     *      description="Deletes a record and returns no content",
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Contact id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=204,
+     *          description="No content"
+     *       )
+     * )
      * @param Contact $contact
      * @return JsonResponse
      * @throws Exception

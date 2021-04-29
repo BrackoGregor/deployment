@@ -1,0 +1,2369 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel OpenApi Demo Documentation",
+        "description": "L5 Swagger OpenApi description",
+        "contact": {
+            "email": "admin@admin.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "localhost:8000/api/v1",
+            "description": "Timetracker API Server"
+        }
+    ],
+    "paths": {
+        "/activities": {
+            "get": {
+                "tags": [
+                    "Activities"
+                ],
+                "summary": "Get list of activities",
+                "description": "Returns list of activities",
+                "operationId": "getActivitiesList",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "title": {
+                                                        "type": "string"
+                                                    },
+                                                    "start_time": {
+                                                        "type": "date"
+                                                    },
+                                                    "end_time": {
+                                                        "type": "date"
+                                                    },
+                                                    "comment": {
+                                                        "type": "string"
+                                                    },
+                                                    "id_assignments": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "title": "aktivnost1",
+                                                    "start_time": "2021-04-29T17:00:05",
+                                                    "end_time": "2021-04-30T18:00:00",
+                                                    "comment": "implementacija obrazca",
+                                                    "id_assignments": "1",
+                                                    "updated_at": "2021-04-28T15:13:29.000000Z",
+                                                    "created_at": "2021-04-28T15:13:29.000000Z",
+                                                    "id": 1
+                                                },
+                                                {
+                                                    "title": "aktivnost2",
+                                                    "start_time": "2021-04-30T10:00:05",
+                                                    "end_time": "2021-05-01T15:00:00",
+                                                    "comment": "implementacija API",
+                                                    "id_assignments": "2",
+                                                    "updated_at": "2021-04-28T15:13:29.000000Z",
+                                                    "created_at": "2021-04-28T15:13:29.000000Z",
+                                                    "id": 2
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Activities"
+                ],
+                "summary": "Store new activity",
+                "description": "Returns activity data",
+                "operationId": "storeActivity",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "start_time": {
+                                        "type": "date"
+                                    },
+                                    "end_time": {
+                                        "type": "date"
+                                    },
+                                    "comment": {
+                                        "type": "string"
+                                    },
+                                    "id_assignments": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "start_time": {
+                                            "type": "date"
+                                        },
+                                        "end_time": {
+                                            "type": "date"
+                                        },
+                                        "comment": {
+                                            "type": "string"
+                                        },
+                                        "id_assignments": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "title": "aktivnost1",
+                                        "start_time": "2021-04-29T17:00:05",
+                                        "end_time": "2021-04-30T18:00:00",
+                                        "comment": "implementacija obrazca",
+                                        "id_assignments": "1",
+                                        "updated_at": "2021-04-28T15:13:29.000000Z",
+                                        "created_at": "2021-04-28T15:13:29.000000Z",
+                                        "id": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/activities/{activity}": {
+            "get": {
+                "tags": [
+                    "Activities"
+                ],
+                "summary": "Get activity information",
+                "description": "Returns activity data",
+                "operationId": "getActivityById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "start_time": {
+                                            "type": "date"
+                                        },
+                                        "end_time": {
+                                            "type": "date"
+                                        },
+                                        "comment": {
+                                            "type": "string"
+                                        },
+                                        "id_assignments": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "title": "aktivnost1",
+                                        "start_time": "2021-04-29T17:00:05",
+                                        "end_time": "2021-04-30T18:00:00",
+                                        "comment": "implementacija obrazca",
+                                        "id_assignments": "1",
+                                        "updated_at": "2021-04-28T15:13:29.000000Z",
+                                        "created_at": "2021-04-28T15:13:29.000000Z",
+                                        "id": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Activities"
+                ],
+                "summary": "Update existing activity",
+                "description": "Returns updated activity data",
+                "operationId": "updateActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "start_time": {
+                                        "type": "date"
+                                    },
+                                    "end_time": {
+                                        "type": "date"
+                                    },
+                                    "comment": {
+                                        "type": "string"
+                                    },
+                                    "id_assignments": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "title": {
+                                            "type": "string"
+                                        },
+                                        "start_time": {
+                                            "type": "date"
+                                        },
+                                        "end_time": {
+                                            "type": "date"
+                                        },
+                                        "comment": {
+                                            "type": "string"
+                                        },
+                                        "id_assignments": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Activities"
+                ],
+                "summary": "Delete existing activity",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteActivity",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Activity id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/assignments": {
+            "get": {
+                "tags": [
+                    "Assignments"
+                ],
+                "summary": "Get list of assignments",
+                "description": "Returns list of assignments",
+                "operationId": "getAssignmentsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "work_description": {
+                                                        "type": "string"
+                                                    },
+                                                    "developer_description": {
+                                                        "type": "string"
+                                                    },
+                                                    "id_clients": {
+                                                        "type": "integer"
+                                                    },
+                                                    "id_statuses": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": 1,
+                                                    "work_description": "test",
+                                                    "developer_description": "primer",
+                                                    "id_clients": 1,
+                                                    "id_statuses": 2,
+                                                    "created_at": "2021-04-23T14:27:57.000000Z",
+                                                    "updated_at": "2021-04-23T14:27:57.000000Z",
+                                                    "deleted_at": null
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "work_description": "novi",
+                                                    "developer_description": "primer",
+                                                    "id_clients": 2,
+                                                    "id_statuses": 2,
+                                                    "created_at": "2021-04-23T14:31:20.000000Z",
+                                                    "updated_at": "2021-04-23T14:31:20.000000Z",
+                                                    "deleted_at": null
+                                                },
+                                                {
+                                                    "id": 3,
+                                                    "work_description": "noviProjekt",
+                                                    "developer_description": "primer",
+                                                    "id_clients": 2,
+                                                    "id_statuses": 2,
+                                                    "created_at": "2021-04-23T14:31:31.000000Z",
+                                                    "updated_at": "2021-04-23T14:31:31.000000Z",
+                                                    "deleted_at": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Assignments"
+                ],
+                "summary": "Store new assignment",
+                "description": "Returns assignment data",
+                "operationId": "storeAssignment",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "work_description": {
+                                        "type": "string"
+                                    },
+                                    "developer_description": {
+                                        "type": "string"
+                                    },
+                                    "id_clients": {
+                                        "type": "integer"
+                                    },
+                                    "id_statuses": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "work_description": {
+                                            "type": "string"
+                                        },
+                                        "developer_description": {
+                                            "type": "string"
+                                        },
+                                        "id_clients": {
+                                            "type": "integer"
+                                        },
+                                        "id_statuses": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "work_description": "test work description",
+                                        "developer_description": "test developer description",
+                                        "id_clients": 1,
+                                        "id_statuses": 3,
+                                        "updated_at": "2021-04-28T17:39:37.000000Z",
+                                        "created_at": "2021-04-28T17:39:37.000000Z",
+                                        "id": 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/assignmentsClient/{id}": {
+            "get": {
+                "tags": [
+                    "Assignments"
+                ],
+                "summary": "Get list of assignments for client",
+                "description": "Returns list of assignments for specific client",
+                "operationId": "getAssignmentsList",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Client id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "work_description": {
+                                                        "type": "string"
+                                                    },
+                                                    "developer_description": {
+                                                        "type": "string"
+                                                    },
+                                                    "id_clients": {
+                                                        "type": "integer"
+                                                    },
+                                                    "id_statuses": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": 1,
+                                                    "work_description": "test",
+                                                    "developer_description": "primer",
+                                                    "id_clients": 1,
+                                                    "id_statuses": 2,
+                                                    "created_at": "2021-04-23 14:27:57",
+                                                    "updated_at": "2021-04-23 14:27:57",
+                                                    "deleted_at": null
+                                                },
+                                                {
+                                                    "id": 4,
+                                                    "work_description": "stari",
+                                                    "developer_description": "primer",
+                                                    "id_clients": 1,
+                                                    "id_statuses": 1,
+                                                    "created_at": "2021-04-23 14:31:42",
+                                                    "updated_at": "2021-04-23 14:31:42",
+                                                    "deleted_at": null
+                                                },
+                                                {
+                                                    "id": 5,
+                                                    "work_description": "test work description",
+                                                    "developer_description": "test developer description",
+                                                    "id_clients": 1,
+                                                    "id_statuses": 3,
+                                                    "created_at": "2021-04-28 17:39:37",
+                                                    "updated_at": "2021-04-28 17:39:37",
+                                                    "deleted_at": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/assignments/{assignment}": {
+            "get": {
+                "tags": [
+                    "Assignments"
+                ],
+                "summary": "Get assignment information",
+                "description": "Returns assignment data",
+                "operationId": "getAssignmentById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Assignment id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "work_description": {
+                                            "type": "string"
+                                        },
+                                        "developer_description": {
+                                            "type": "string"
+                                        },
+                                        "id_clients": {
+                                            "type": "integer"
+                                        },
+                                        "id_statuses": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "work_description": "test work description",
+                                        "developer_description": "test developer description",
+                                        "id_clients": 1,
+                                        "id_statuses": 3,
+                                        "updated_at": "2021-04-28T17:39:37.000000Z",
+                                        "created_at": "2021-04-28T17:39:37.000000Z",
+                                        "id": 5
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Assignments"
+                ],
+                "summary": "Update existing assignment",
+                "description": "Returns updated assignment data",
+                "operationId": "updateAssignment",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Assignment id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "work_description": {
+                                        "type": "string"
+                                    },
+                                    "developer_description": {
+                                        "type": "string"
+                                    },
+                                    "id_clients": {
+                                        "type": "integer"
+                                    },
+                                    "id_statuses": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "work_description": {
+                                            "type": "string"
+                                        },
+                                        "developer_description": {
+                                            "type": "string"
+                                        },
+                                        "id_clients": {
+                                            "type": "integer"
+                                        },
+                                        "id_statuses": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Assignments"
+                ],
+                "summary": "Delete existing assignment",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteAssignment",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Assignment id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/clients": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get list of clients",
+                "description": "Returns list of clients",
+                "operationId": "getClientsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "address": {
+                                                        "type": "string"
+                                                    },
+                                                    "postcode": {
+                                                        "type": "string"
+                                                    },
+                                                    "city": {
+                                                        "type": "string"
+                                                    },
+                                                    "country": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": 1,
+                                                    "name": "test123",
+                                                    "address": "12345",
+                                                    "postcode": "2000",
+                                                    "city": "Maribor",
+                                                    "country": "Slovenija",
+                                                    "created_at": "2021-04-20T10:19:05.000000Z",
+                                                    "updated_at": "2021-04-21T10:40:39.000000Z",
+                                                    "deleted_at": null
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "name": "firma",
+                                                    "address": "primer",
+                                                    "postcode": "2000",
+                                                    "city": "Maribor",
+                                                    "country": "Slovenija",
+                                                    "created_at": "2021-04-23T14:30:42.000000Z",
+                                                    "updated_at": "2021-04-23T14:30:42.000000Z",
+                                                    "deleted_at": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Store new client",
+                "description": "Returns client data",
+                "operationId": "storeClient",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "postcode": {
+                                        "type": "string"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "address": {
+                                            "type": "string"
+                                        },
+                                        "postcode": {
+                                            "type": "string"
+                                        },
+                                        "city": {
+                                            "type": "string"
+                                        },
+                                        "country": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 2,
+                                        "name": "podjetje d.o.o.",
+                                        "address": "počehova",
+                                        "postcode": "2000",
+                                        "city": "Maribor",
+                                        "country": "Slovenija",
+                                        "created_at": "2021-04-23T14:30:42.000000Z",
+                                        "updated_at": "2021-04-23T14:30:42.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/clients/{client}": {
+            "get": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Get client information",
+                "description": "Returns client data",
+                "operationId": "getClientById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Client id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "address": {
+                                            "type": "string"
+                                        },
+                                        "postcode": {
+                                            "type": "string"
+                                        },
+                                        "city": {
+                                            "type": "string"
+                                        },
+                                        "country": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 3,
+                                        "name": "nova",
+                                        "address": "primer",
+                                        "postcode": "2000",
+                                        "city": "Maribor",
+                                        "country": "Slovenija",
+                                        "created_at": "2021-04-23T14:30:45.000000Z",
+                                        "updated_at": "2021-04-23T14:30:45.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Update existing client",
+                "description": "Returns updated client data",
+                "operationId": "updateClient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Client id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "address": {
+                                        "type": "string"
+                                    },
+                                    "postcode": {
+                                        "type": "string"
+                                    },
+                                    "city": {
+                                        "type": "string"
+                                    },
+                                    "country": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "address": {
+                                            "type": "string"
+                                        },
+                                        "postcode": {
+                                            "type": "string"
+                                        },
+                                        "city": {
+                                            "type": "string"
+                                        },
+                                        "country": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 2,
+                                        "name": "solve-x",
+                                        "address": "počehova",
+                                        "postcode": "2000",
+                                        "city": "Maribor",
+                                        "country": "Slovenija",
+                                        "created_at": "2021-04-23T14:30:42.000000Z",
+                                        "updated_at": "2021-04-29T07:07:40.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Clients"
+                ],
+                "summary": "Delete existing client",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteClient",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Client id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/contacts": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Get list of contacts",
+                "description": "Returns list of contacts",
+                "operationId": "getContactsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "firstname": {
+                                                        "type": "string"
+                                                    },
+                                                    "lastname": {
+                                                        "type": "string"
+                                                    },
+                                                    "email": {
+                                                        "type": "string"
+                                                    },
+                                                    "phone": {
+                                                        "type": "string"
+                                                    },
+                                                    "id_client": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": 1,
+                                                    "firstname": "janez",
+                                                    "lastname": "novak",
+                                                    "email": "jnovak@gmail.com",
+                                                    "phone": "041123321",
+                                                    "id_client": 1,
+                                                    "created_at": "2021-04-29T07:13:09.000000Z",
+                                                    "updated_at": "2021-04-29T07:13:09.000000Z",
+                                                    "deleted_at": null
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "firstname": "zoran",
+                                                    "lastname": "tezin",
+                                                    "email": "zorantezin@gmail.com",
+                                                    "phone": "070323567",
+                                                    "id_client": 1,
+                                                    "created_at": "2021-04-29T07:13:52.000000Z",
+                                                    "updated_at": "2021-04-29T07:13:52.000000Z",
+                                                    "deleted_at": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Store new contact",
+                "description": "Returns contact data",
+                "operationId": "storeContact",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "id_client": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "firstname": {
+                                            "type": "string"
+                                        },
+                                        "lastname": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "phone": {
+                                            "type": "string"
+                                        },
+                                        "id_client": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 2,
+                                        "firstname": "zoran",
+                                        "lastname": "tezin",
+                                        "email": "zorantezin@gmail.com",
+                                        "phone": "070323567",
+                                        "id_client": 1,
+                                        "created_at": "2021-04-29T07:13:52.000000Z",
+                                        "updated_at": "2021-04-29T07:13:52.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/contacts/{contact}": {
+            "get": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Get contact information",
+                "description": "Returns contact data",
+                "operationId": "getContactById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Contact id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "firstname": {
+                                            "type": "string"
+                                        },
+                                        "lastname": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "phone": {
+                                            "type": "string"
+                                        },
+                                        "id_client": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 1,
+                                        "firstname": "janez",
+                                        "lastname": "novak",
+                                        "email": "jnovak@gmail.com",
+                                        "phone": "041123321",
+                                        "id_client": 1,
+                                        "created_at": "2021-04-29T07:13:09.000000Z",
+                                        "updated_at": "2021-04-29T07:13:09.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Update existing contact",
+                "description": "Returns updated contact data",
+                "operationId": "updateContact",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Contact id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "id_client": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "firstname": {
+                                            "type": "string"
+                                        },
+                                        "lastname": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "phone": {
+                                            "type": "string"
+                                        },
+                                        "id_client": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 2,
+                                        "firstname": "franc",
+                                        "lastname": "soucek",
+                                        "email": "francsoucek@gmail.com",
+                                        "phone": "070323567",
+                                        "id_client": "1",
+                                        "created_at": "2021-04-29T07:13:52.000000Z",
+                                        "updated_at": "2021-04-29T07:20:02.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Contacts"
+                ],
+                "summary": "Delete existing contact",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteContact",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Contact id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/statuses": {
+            "get": {
+                "tags": [
+                    "Assignment statuses"
+                ],
+                "summary": "Get list of statuses",
+                "description": "Returns list of statuses",
+                "operationId": "getStatusesList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": 1,
+                                                    "name": "completed",
+                                                    "created_at": "2021-04-22T16:12:24.000000Z",
+                                                    "updated_at": "2021-04-22T16:12:24.000000Z",
+                                                    "deleted_at": null
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "name": "in progress",
+                                                    "created_at": "2021-04-22T16:12:24.000000Z",
+                                                    "updated_at": "2021-04-22T16:12:24.000000Z",
+                                                    "deleted_at": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Assignment statuses"
+                ],
+                "summary": "Store new status",
+                "description": "Returns status data",
+                "operationId": "storeStatus",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 3,
+                                        "name": "waiting",
+                                        "created_at": "2021-04-22T16:12:24.000000Z",
+                                        "updated_at": "2021-04-22T16:12:24.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/statuses/{status}": {
+            "get": {
+                "tags": [
+                    "Assignment statuses"
+                ],
+                "summary": "Get status information",
+                "description": "Returns status data",
+                "operationId": "getStatusById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Status id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 1,
+                                        "name": "completed",
+                                        "created_at": "2021-04-22T16:12:24.000000Z",
+                                        "updated_at": "2021-04-22T16:12:24.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Assignment statuses"
+                ],
+                "summary": "Update existing status",
+                "description": "Returns updated status data",
+                "operationId": "updateStatus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Status id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Assignment statuses"
+                ],
+                "summary": "Delete existing status",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteStatus",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Status id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/userAssignments": {
+            "get": {
+                "tags": [
+                    "User Assignments"
+                ],
+                "summary": "Get list of userAssignments",
+                "description": "Returns list of userAssignments",
+                "operationId": "getuserAssignmentsList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id_users": {
+                                                        "type": "integer"
+                                                    },
+                                                    "id_assignments": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": 1,
+                                                    "id_users": 1,
+                                                    "id_assignments": 1,
+                                                    "created_at": "2021-04-29T07:30:27.000000Z",
+                                                    "updated_at": "2021-04-29T07:30:27.000000Z",
+                                                    "deleted_at": null
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "id_users": 1,
+                                                    "id_assignments": 2,
+                                                    "created_at": "2021-04-29T07:30:38.000000Z",
+                                                    "updated_at": "2021-04-29T07:30:38.000000Z",
+                                                    "deleted_at": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User Assignments"
+                ],
+                "summary": "Store new userAssignment",
+                "description": "Returns userAssignment data",
+                "operationId": "storeuserAssignment",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "integer"
+                                    },
+                                    "id_assignments": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id_users": {
+                                            "type": "integer"
+                                        },
+                                        "id_assignments": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 2,
+                                        "id_users": 1,
+                                        "id_assignments": 2,
+                                        "created_at": "2021-04-29T07:30:38.000000Z",
+                                        "updated_at": "2021-04-29T07:30:38.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/userAssignments/{userAssignment}": {
+            "get": {
+                "tags": [
+                    "User Assignments"
+                ],
+                "summary": "Get userAssignment information",
+                "description": "Returns userAssignments data",
+                "operationId": "getuserAssignmentById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "userAssignment id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id_users": {
+                                            "type": "integer"
+                                        },
+                                        "id_assignments": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 1,
+                                        "id_users": 1,
+                                        "id_assignments": 1,
+                                        "created_at": "2021-04-29T07:30:27.000000Z",
+                                        "updated_at": "2021-04-29T07:30:27.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User Assignments"
+                ],
+                "summary": "Update existing userAssignment",
+                "description": "Returns updated userAssignment data",
+                "operationId": "updateuserAssignment",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "userAssignment id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "id_users": {
+                                        "type": "integer"
+                                    },
+                                    "id_assignments": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id_users": {
+                                            "type": "integer"
+                                        },
+                                        "id_assignments": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User Assignments"
+                ],
+                "summary": "Delete existing userAssignment",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteuserAssignment",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "userAssignment id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get list of users",
+                "description": "Returns list of users",
+                "operationId": "getUsersList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "firstname": {
+                                                        "type": "string"
+                                                    },
+                                                    "lastname": {
+                                                        "type": "string"
+                                                    },
+                                                    "username": {
+                                                        "type": "string"
+                                                    },
+                                                    "email": {
+                                                        "type": "string"
+                                                    },
+                                                    "password": {
+                                                        "type": "string"
+                                                    },
+                                                    "id_users_roles": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": 1,
+                                                    "firstname": "janez",
+                                                    "lastname": "novak",
+                                                    "username": "janeznovak",
+                                                    "email": "janez.novak@gmail.com",
+                                                    "id_users_roles": 1,
+                                                    "created_at": "2021-04-20T12:17:23.000000Z",
+                                                    "updated_at": "2021-04-20T12:17:23.000000Z",
+                                                    "deleted_at": "0000-00-00 00:00:00"
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "firstname": "test",
+                                                    "lastname": "test",
+                                                    "username": "test12345",
+                                                    "email": "test.test@gmail.com",
+                                                    "id_users_roles": 1,
+                                                    "created_at": "2021-04-21T10:19:09.000000Z",
+                                                    "updated_at": "2021-04-21T10:19:09.000000Z",
+                                                    "deleted_at": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Store new user",
+                "description": "Returns user data",
+                "operationId": "storeUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "id_users_roles": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "firstname": {
+                                            "type": "string"
+                                        },
+                                        "lastname": {
+                                            "type": "string"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "password": {
+                                            "type": "string"
+                                        },
+                                        "id_users_roles": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 2,
+                                        "firstname": "test",
+                                        "lastname": "test",
+                                        "username": "test12345",
+                                        "email": "test.test@gmail.com",
+                                        "id_users_roles": 1,
+                                        "created_at": "2021-04-21T10:19:09.000000Z",
+                                        "updated_at": "2021-04-21T10:19:09.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{user}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user information",
+                "description": "Returns user data",
+                "operationId": "getUserById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "firstname": {
+                                            "type": "string"
+                                        },
+                                        "lastname": {
+                                            "type": "string"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "password": {
+                                            "type": "string"
+                                        },
+                                        "id_users_roles": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 1,
+                                        "firstname": "janez",
+                                        "lastname": "novak",
+                                        "username": "janeznovak",
+                                        "email": "janez.novak@gmail.com",
+                                        "id_users_roles": 1,
+                                        "created_at": "2021-04-20T12:17:23.000000Z",
+                                        "updated_at": "2021-04-20T12:17:23.000000Z",
+                                        "deleted_at": "0000-00-00 00:00:00"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update existing user",
+                "description": "Returns updated user data",
+                "operationId": "updateUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "id_users_roles": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "firstname": {
+                                            "type": "string"
+                                        },
+                                        "lastname": {
+                                            "type": "string"
+                                        },
+                                        "username": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "password": {
+                                            "type": "string"
+                                        },
+                                        "id_users_roles": {
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 3,
+                                        "firstname": "updateIme",
+                                        "lastname": "updatePriimek",
+                                        "username": "update",
+                                        "email": "ime1.test@gmail.com",
+                                        "id_users_roles": 1,
+                                        "created_at": "2021-04-21T10:32:35.000000Z",
+                                        "updated_at": "2021-04-22T07:55:54.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete existing user",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        },
+        "/roles": {
+            "get": {
+                "tags": [
+                    "Users roles"
+                ],
+                "summary": "Get list of users roles",
+                "description": "Returns list of users roles",
+                "operationId": "getUserRolesList",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "role": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "id": 1,
+                                                    "role": "user",
+                                                    "created_at": "2021-04-22T16:06:27.000000Z",
+                                                    "updated_at": "2021-04-22T16:06:27.000000Z",
+                                                    "deleted_at": null
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "role": "admin",
+                                                    "created_at": "2021-04-22T16:06:27.000000Z",
+                                                    "updated_at": "2021-04-22T16:06:27.000000Z",
+                                                    "deleted_at": null
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users roles"
+                ],
+                "summary": "Store new user role",
+                "description": "Returns user role data",
+                "operationId": "storeUserRole",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "role": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "role": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 1,
+                                        "role": "user",
+                                        "created_at": "2021-04-22T16:06:27.000000Z",
+                                        "updated_at": "2021-04-22T16:06:27.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/roles/{role}": {
+            "get": {
+                "tags": [
+                    "Users roles"
+                ],
+                "summary": "Get user role information",
+                "description": "Returns user role data",
+                "operationId": "getUserRoleById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UserRole id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "role": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 2,
+                                        "role": "admin",
+                                        "created_at": "2021-04-22T16:06:27.000000Z",
+                                        "updated_at": "2021-04-22T16:06:27.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users roles"
+                ],
+                "summary": "Update existing user role",
+                "description": "Returns updated user role data",
+                "operationId": "updateUserRole",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UserRole id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "role": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "role": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object",
+                                    "example": {
+                                        "id": 2,
+                                        "role": "admin",
+                                        "created_at": "2021-04-22T16:06:27.000000Z",
+                                        "updated_at": "2021-04-22T16:06:27.000000Z",
+                                        "deleted_at": null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users roles"
+                ],
+                "summary": "Delete existing user role",
+                "description": "Deletes a record and returns no content",
+                "operationId": "deleteUserRole",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "UserRole id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Timetracker",
+            "description": "API Endpoints of Projects"
+        }
+    ],
+    "security": [
+        []
+    ]
+}
