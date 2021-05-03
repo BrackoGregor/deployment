@@ -16,3 +16,4 @@ Homestead.json
 /.vagrant
 storage/oauth-private.key
 storage/oauth-public.key
+.idea
