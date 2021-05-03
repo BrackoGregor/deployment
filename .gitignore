@@ -16,9 +16,4 @@ Homestead.json
 /.vagrant
 storage/oauth-private.key
 storage/oauth-public.key
-.idea/vcs.xml
-.idea/deployment.iml
-.idea/modules.xml
-.idea/php.xml
-.idea/phpunit.xml
 .idea

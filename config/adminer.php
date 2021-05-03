@@ -22,5 +22,6 @@ return [
     | You may customize route prefix. (default: 'adminer')
     |
     */
-    'route_prefix' => 'database/adminer',
+
+    'route_prefix' => '/database/adminer',
 ];

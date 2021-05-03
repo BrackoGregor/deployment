@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserRoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,5 +46,9 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('assignmentsClient/{id}', [AssignmentController::class, 'get_assignments']);
     });
 
+});
+
+Route::get('test', function () {
+    Storage::disk('digitalocean')->append('test.txt', "test");
 });
 
