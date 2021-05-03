@@ -16,6 +16,25 @@ class ActivityController extends Controller
      *      tags={"Activities"},
      *      summary="Get list of activities",
      *      description="Returns list of activities",
+     *      security={{ "apiAuth": {} }},
+     *      @OA\Parameter(
+     *          name="Page",
+     *          in="query",
+     *          required=false,
+     *          description="Page number",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *     @OA\Parameter(
+     *          name="Per page",
+     *          in="query",
+     *          required=false,
+     *          description="Items per page",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="OK",
@@ -71,6 +90,7 @@ class ActivityController extends Controller
      *      tags={"Activities"},
      *      summary="Store new activity",
      *      description="Returns activity data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(mediaType="multipart/form-data",
@@ -128,11 +148,12 @@ class ActivityController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/activities/{activity}",
+     *      path="/activities/{id}",
      *      operationId="getActivityById",
      *      tags={"Activities"},
      *      summary="Get activity information",
      *      description="Returns activity data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Activity id",
@@ -179,11 +200,12 @@ class ActivityController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/activities/{activity}",
+     *      path="/activities/{id}",
      *      operationId="updateActivity",
      *      tags={"Activities"},
      *      summary="Update existing activity",
      *      description="Returns updated activity data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Activity id",
@@ -242,11 +264,12 @@ class ActivityController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/activities/{activity}",
+     *      path="/activities/{id}",
      *      operationId="deleteActivity",
      *      tags={"Activities"},
      *      summary="Delete existing activity",
      *      description="Deletes a record and returns no content",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Activity id",

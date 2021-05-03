@@ -16,6 +16,25 @@ class ContactController extends Controller
      *      tags={"Contacts"},
      *      summary="Get list of contacts",
      *      description="Returns list of contacts",
+     *      security={{ "apiAuth": {} }},
+     *      @OA\Parameter(
+     *          name="Page",
+     *          in="query",
+     *          required=false,
+     *          description="Page number",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *     @OA\Parameter(
+     *          name="Per page",
+     *          in="query",
+     *          required=false,
+     *          description="Items per page",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -71,6 +90,7 @@ class ContactController extends Controller
      *      tags={"Contacts"},
      *      summary="Store new contact",
      *      description="Returns contact data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(mediaType="multipart/form-data",
@@ -132,11 +152,12 @@ class ContactController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/contacts/{contact}",
+     *      path="/contacts/{id}",
      *      operationId="getContactById",
      *      tags={"Contacts"},
      *      summary="Get contact information",
      *      description="Returns contact data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Contact id",
@@ -184,11 +205,12 @@ class ContactController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/contacts/{contact}",
+     *      path="/contacts/{id}",
      *      operationId="updateContact",
      *      tags={"Contacts"},
      *      summary="Update existing contact",
      *      description="Returns updated contact data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Contact id",
@@ -260,11 +282,12 @@ class ContactController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/contacts/{contact}",
+     *      path="/contacts/{id}",
      *      operationId="deleteContact",
      *      tags={"Contacts"},
      *      summary="Delete existing contact",
      *      description="Deletes a record and returns no content",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Contact id",

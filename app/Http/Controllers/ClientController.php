@@ -16,6 +16,25 @@ class ClientController extends Controller
      *      tags={"Clients"},
      *      summary="Get list of clients",
      *      description="Returns list of clients",
+     *      security={{ "apiAuth": {} }},
+     *      @OA\Parameter(
+     *          name="Page",
+     *          in="query",
+     *          required=false,
+     *          description="Page number",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *     @OA\Parameter(
+     *          name="Per page",
+     *          in="query",
+     *          required=false,
+     *          description="Items per page",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -74,6 +93,7 @@ class ClientController extends Controller
      *      tags={"Clients"},
      *      summary="Store new client",
      *      description="Returns client data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(mediaType="multipart/form-data",
@@ -135,11 +155,12 @@ class ClientController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/clients/{client}",
+     *      path="/clients/{id}",
      *      operationId="getClientById",
      *      tags={"Clients"},
      *      summary="Get client information",
      *      description="Returns client data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Client id",
@@ -188,11 +209,12 @@ class ClientController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/clients/{client}",
+     *      path="/clients/{id}",
      *      operationId="updateClient",
      *      tags={"Clients"},
      *      summary="Update existing client",
      *      description="Returns updated client data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Client id",
@@ -264,11 +286,12 @@ class ClientController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/clients/{client}",
+     *      path="/clients/{id}",
      *      operationId="deleteClient",
      *      tags={"Clients"},
      *      summary="Delete existing client",
      *      description="Deletes a record and returns no content",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Client id",

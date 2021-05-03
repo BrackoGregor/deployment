@@ -16,6 +16,25 @@ class UserRoleController extends Controller
      *      tags={"Users roles"},
      *      summary="Get list of users roles",
      *      description="Returns list of users roles",
+     *      security={{ "apiAuth": {} }},
+     *      @OA\Parameter(
+     *          name="Page",
+     *          in="query",
+     *          required=false,
+     *          description="Page number",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *     @OA\Parameter(
+     *          name="Per page",
+     *          in="query",
+     *          required=false,
+     *          description="Items per page",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -59,6 +78,7 @@ class UserRoleController extends Controller
      *      tags={"Users roles"},
      *      summary="Store new user role",
      *      description="Returns user role data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(mediaType="multipart/form-data",
@@ -104,11 +124,12 @@ class UserRoleController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/roles/{role}",
+     *      path="/roles/{id}",
      *      operationId="getUserRoleById",
      *      tags={"Users roles"},
      *      summary="Get user role information",
      *      description="Returns user role data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="UserRole id",
@@ -148,11 +169,12 @@ class UserRoleController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/roles/{role}",
+     *      path="/roles/{id}",
      *      operationId="updateUserRole",
      *      tags={"Users roles"},
      *      summary="Update existing user role",
      *      description="Returns updated user role data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="UserRole id",
@@ -208,11 +230,12 @@ class UserRoleController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/roles/{role}",
+     *      path="/roles/{id}",
      *      operationId="deleteUserRole",
      *      tags={"Users roles"},
      *      summary="Delete existing user role",
      *      description="Deletes a record and returns no content",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="UserRole id",

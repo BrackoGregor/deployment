@@ -16,6 +16,25 @@ class UserAssignmentController extends Controller
      *      tags={"User Assignments"},
      *      summary="Get list of userAssignments",
      *      description="Returns list of userAssignments",
+     *      security={{ "apiAuth": {} }},
+     *      @OA\Parameter(
+     *          name="Page",
+     *          in="query",
+     *          required=false,
+     *          description="Page number",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *     @OA\Parameter(
+     *          name="Per page",
+     *          in="query",
+     *          required=false,
+     *          description="Items per page",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -62,6 +81,7 @@ class UserAssignmentController extends Controller
      *      tags={"User Assignments"},
      *      summary="Store new userAssignment",
      *      description="Returns userAssignment data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(mediaType="multipart/form-data",
@@ -108,11 +128,12 @@ class UserAssignmentController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/userAssignments/{userAssignment}",
+     *      path="/userAssignments/{id}",
      *      operationId="getuserAssignmentById",
      *      tags={"User Assignments"},
      *      summary="Get userAssignment information",
      *      description="Returns userAssignments data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="userAssignment id",
@@ -154,11 +175,12 @@ class UserAssignmentController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/userAssignments/{userAssignment}",
+     *      path="/userAssignments/{id}",
      *      operationId="updateuserAssignment",
      *      tags={"User Assignments"},
      *      summary="Update existing userAssignment",
      *      description="Returns updated userAssignment data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="userAssignment id",
@@ -208,11 +230,12 @@ class UserAssignmentController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/userAssignments/{userAssignment}",
+     *      path="/userAssignments/{id}",
      *      operationId="deleteuserAssignment",
      *      tags={"User Assignments"},
      *      summary="Delete existing userAssignment",
      *      description="Deletes a record and returns no content",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="userAssignment id",

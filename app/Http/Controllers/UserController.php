@@ -16,6 +16,25 @@ class UserController extends Controller
      *      tags={"Users"},
      *      summary="Get list of users",
      *      description="Returns list of users",
+     *      security={{ "apiAuth": {} }},
+     *      @OA\Parameter(
+     *          name="Page",
+     *          in="query",
+     *          required=false,
+     *          description="Page number",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *     @OA\Parameter(
+     *          name="Per page",
+     *          in="query",
+     *          required=false,
+     *          description="Items per page",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -136,11 +155,12 @@ class UserController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/users/{user}",
+     *      path="/users/{id}",
      *      operationId="getUserById",
      *      tags={"Users"},
      *      summary="Get user information",
      *      description="Returns user data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
@@ -189,11 +209,12 @@ class UserController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/users/{user}",
+     *      path="/users/{id}",
      *      operationId="updateUser",
      *      tags={"Users"},
      *      summary="Update existing user",
      *      description="Returns updated user data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",
@@ -268,11 +289,12 @@ class UserController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/users/{user}",
+     *      path="/users/{id}",
      *      operationId="deleteUser",
      *      tags={"Users"},
      *      summary="Delete existing user",
      *      description="Deletes a record and returns no content",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="User id",

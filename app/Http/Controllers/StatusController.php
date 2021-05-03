@@ -16,6 +16,25 @@ class StatusController extends Controller
      *      tags={"Assignment statuses"},
      *      summary="Get list of statuses",
      *      description="Returns list of statuses",
+     *      security={{ "apiAuth": {} }},
+     *      @OA\Parameter(
+     *          name="Page",
+     *          in="query",
+     *          required=false,
+     *          description="Page number",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *     @OA\Parameter(
+     *          name="Per page",
+     *          in="query",
+     *          required=false,
+     *          description="Items per page",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -59,6 +78,7 @@ class StatusController extends Controller
      *      tags={"Assignment statuses"},
      *      summary="Store new status",
      *      description="Returns status data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(mediaType="multipart/form-data",
@@ -101,11 +121,12 @@ class StatusController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/statuses/{status}",
+     *      path="/statuses/{id}",
      *      operationId="getStatusById",
      *      tags={"Assignment statuses"},
      *      summary="Get status information",
      *      description="Returns status data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Status id",
@@ -145,11 +166,12 @@ class StatusController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/statuses/{status}",
+     *      path="/statuses/{id}",
      *      operationId="updateStatus",
      *      tags={"Assignment statuses"},
      *      summary="Update existing status",
      *      description="Returns updated status data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Status id",
@@ -196,11 +218,12 @@ class StatusController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/statuses/{status}",
+     *      path="/statuses/{id}",
      *      operationId="deleteStatus",
      *      tags={"Assignment statuses"},
      *      summary="Delete existing status",
      *      description="Deletes a record and returns no content",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Status id",

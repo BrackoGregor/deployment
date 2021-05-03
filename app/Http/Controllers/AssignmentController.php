@@ -18,6 +18,25 @@ class AssignmentController extends Controller
      *      tags={"Assignments"},
      *      summary="Get list of assignments",
      *      description="Returns list of assignments",
+     *      security={{ "apiAuth": {} }},
+     *      @OA\Parameter(
+     *          name="Page",
+     *          in="query",
+     *          required=false,
+     *          description="Page number",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
+     *     @OA\Parameter(
+     *          name="Per page",
+     *          in="query",
+     *          required=false,
+     *          description="Items per page",
+     *          @OA\Schema(
+     *              type="string"
+     *          ),
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -81,6 +100,7 @@ class AssignmentController extends Controller
      *      tags={"Assignments"},
      *      summary="Get list of assignments for client",
      *      description="Returns list of assignments for specific client",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Client id",
@@ -154,6 +174,7 @@ class AssignmentController extends Controller
      *      tags={"Assignments"},
      *      summary="Store new assignment",
      *      description="Returns assignment data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\RequestBody(
      *          required=true,
      *          @OA\MediaType(mediaType="multipart/form-data",
@@ -207,11 +228,12 @@ class AssignmentController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/assignments/{assignment}",
+     *      path="/assignments/{id}",
      *      operationId="getAssignmentById",
      *      tags={"Assignments"},
      *      summary="Get assignment information",
      *      description="Returns assignment data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Assignment id",
@@ -256,11 +278,12 @@ class AssignmentController extends Controller
 
     /**
      * @OA\Put(
-     *      path="/assignments/{assignment}",
+     *      path="/assignments/{id}",
      *      operationId="updateAssignment",
      *      tags={"Assignments"},
      *      summary="Update existing assignment",
      *      description="Returns updated assignment data",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Assignment id",
@@ -316,11 +339,12 @@ class AssignmentController extends Controller
 
     /**
      * @OA\Delete(
-     *      path="/assignments/{assignment}",
+     *      path="/assignments/{id}",
      *      operationId="deleteAssignment",
      *      tags={"Assignments"},
      *      summary="Delete existing assignment",
      *      description="Deletes a record and returns no content",
+     *      security={{ "apiAuth": {} }},
      *      @OA\Parameter(
      *          name="id",
      *          description="Assignment id",
